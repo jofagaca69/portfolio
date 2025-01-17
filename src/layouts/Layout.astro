@@ -1,0 +1,89 @@
+---
+// src/layouts/Layout.astro
+import { SEO } from 'astro-seo';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = 'Your Site Title',
+    description = 'Your site description',
+    image = '/default-og-image.jpg',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+            title={title}
+            description={description}
+            openGraph={{
+                basic: {
+                    title,
+                    type: 'website',
+                    image,
+                },
+                optional: {
+                    description,
+                    siteName: "Your Site Name",
+                },
+            }}
+    />
+
+    <!-- Theme Script -->
+    <script is:inline>
+        const theme = (() => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
+            }
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        })();
+
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-200">
+<ThemeToggle />
+<slot />
+<style is:global>
+    :root {
+        --accent: 136, 58, 234;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        font-family: system-ui, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        line-height: 1.5;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+</body>
+</html>

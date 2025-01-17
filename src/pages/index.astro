@@ -1,0 +1,429 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.webp';
+
+interface Project {
+	title: string;
+	description: string;
+	image: string;
+	tags: string[];
+}
+
+const projects: Project[] = [
+	{
+		title: "Colegio Campestre Exploradores del Saber",
+		description: "Desarrollo de plataforma administrativa, app oficial y website SEO optimizado.",
+		image: "https://www.colexploradoresdelsaber.com/_astro/LogoVerLetraCafe.BdcSS61c_Z1D0YCH.svg",
+		tags: ["Angular", "SpringBoot", "Ionic", "Gatsby", "React", "Astro"]
+	},
+	{
+		title: "AVILA",
+		description: "Desarrollo de aplicación híbrida y fullstack",
+		image: "https://software.ingusb.com/avila/img/bg-img/log.png",
+		tags: ["Angular", "Ionic", "Capacitor", "Django"]
+	},
+	{
+		title: "Telcel",
+		description: "Diseño y desarrollo de e-commerce",
+		image: "https://laliteradice.com/wp-content/uploads/2023/04/imagen-6.png?w=1024",
+		tags: ["SAP Commerce", "Angular", "Spartacus"]
+	},
+	{
+		title: "Jangol",
+		description: "Desarrollo frontend con Ionic y backend con SpringBoot/NestJS",
+		image: "/api/placeholder/400/320",
+		tags: ["Ionic", "SpringBoot", "NestJS", "Docker", "Firebase"]
+	}
+];
+
+const technicalSkills = {
+	languages: [
+		{name: "TypeScript", level: 90},
+		{name: "JavaScript", level: 80},
+		{name: "Java", level: 75},
+		{name: "PHP", level: 60},
+	],
+	frameworks: [
+		{name: "Angular", level: 90},
+		{name: "Astro", level: 85},
+		{name: "NestJS", level: 80},
+		{name: "React", level: 85},
+		{name: "FilamentPHP", level: 75},
+		{name: "SpringBoot", level: 75}
+	],
+	tools: [
+		{name: "Git", level: 90},
+		{name: "Docker", level: 80},
+		{name: "AWS", level: 75},
+		{name: "DevOps", level: 80}
+	]
+};
+
+const workExperience = [
+	{
+		company: "Deloitte",
+		position: "Senior Consultant / Frontend Developer",
+		period: "2023 - Present",
+		description: [
+			"Frontend developer enfocado en SAP Commerce framework (Spartacus)",
+			"Desarrollo con JavaScript, Angular, TypeScript, HTML, SCSS",
+			"Creación y gestión de plantillas de email usando SpringBoot y Velocity"
+		]
+	},
+	{
+		company: "Periferia-IT group",
+		position: "Frontend Developer (Angular)",
+		period: "2022 - 2023",
+		description: [
+			"Desarrollo de aplicaciones web con Angular y AWS Cognito",
+			"Consumo de servicios REST en Java",
+			"Desarrollo de pruebas unitarias con Karma y Jasmine"
+		]
+	},
+	{
+		company: "BairesDev",
+		position: "Full Stack Developer",
+		period: "2021 - 2022",
+		description: [
+			"Desarrollo web con Angular, Ionic, Cordova y React",
+			"Desarrollo backend con NestJS y AWS",
+			"Implementación de pruebas unitarias con Karma y Jasmine"
+		]
+	}
+];
+
+const education = [
+	{
+		institution: "Universidad Nacional de Colombia",
+		degree: "Maestría en Ingeniería de Sistemas y Computación",
+		period: "2024 - Present",
+		description: "Actualmente cursando"
+	},
+	{
+		institution: "Universidad de San Buenaventura",
+		degree: "Ingeniería en Sistemas",
+		period: "2016 - 2021",
+		description: "Proyecto de tesis AVILA (Angular/Ionic/Capacitor)"
+	},
+	{
+		institution: "Fedesoft",
+		degree: "Desarrollo de aplicaciones híbridas y fullstack",
+		period: "2018",
+		description: "Especialización en Ionic, Capacitor y Django"
+	}
+];
+---
+
+<Layout title="Mi Portfolio - Desarrollador Full Stack">
+	<!-- Hero Section with Parallax -->
+	<section class="hero-section relative h-screen overflow-hidden flex items-center">
+		<div class="absolute inset-0">
+			<Image
+				src={hero}
+				alt="Background"
+				class="hero-bg w-full h-full object-cover transform scale-110 xl::scale-100"
+				quality="high"
+			/>
+			<div class="absolute inset-0 bg-black/50 dark:bg-black/50"></div>
+		</div>
+
+		<div class="hero-content relative container mx-auto px-4 sm:px-6 text-white">
+			<h1 class="text-4xl sm:text-5xl md:text-7xl font-bold mb-3 sm:mb-4">
+				José F. García
+			</h1>
+			<h2 class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 max-w-2xl">
+				<span class="hero-typing"></span><span class="cursor">|</span>
+			</h2>
+			<a href="#contact" class="inline-block bg-white dark:bg-gray-800 text-black dark:text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-opacity-90 transition-all">
+				Contactar
+			</a>
+		</div>
+	</section>
+	<!-- Projects Section -->
+	<section class="py-12 sm:py-20 bg-white dark:bg-gray-900">
+		<div class="container mx-auto px-4 sm:px-6">
+			<h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-white">
+				Proyectos Destacados
+			</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+				{projects.map(project => (
+					<div class="group relative overflow-hidden rounded-lg shadow-lg hover:-translate-y-2 transition-transform duration-300 bg-white dark:bg-gray-800">
+						<img
+							src={project.image}
+							alt={project.title}
+							class="w-full aspect-video object-cover"
+						/>
+						<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 flex flex-col justify-end transform translate-y-2 group-hover:translate-y-0 transition-transform">
+							<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
+							<p class="text-sm sm:text-base text-white/90 mb-3 sm:mb-4">{project.description}</p>
+							<div class="flex flex-wrap gap-2">
+								{project.tags.map(tag => (
+									<span class="px-2 sm:px-3 py-1 bg-white/20 rounded-full text-white text-xs sm:text-sm">
+										{tag}
+									</span>
+								))}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Technical Skills Section -->
+	<section class="py-12 sm:py-20 bg-gray-50 dark:bg-gray-800">
+		<div class="container mx-auto px-4 sm:px-6">
+			<h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-white">
+				Habilidades Técnicas
+			</h2>
+
+			<!-- Languages -->
+			<div class="mb-12 sm:mb-16">
+				<h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
+					Lenguajes de Programación
+				</h3>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+					{technicalSkills.languages.map(skill => (
+						<div class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md">
+							<div class="flex justify-between mb-2">
+								<span class="font-semibold dark:text-white">{skill.name}</span>
+								<span class="dark:text-gray-200">{skill.level}%</span>
+							</div>
+							<div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-full">
+								<div
+									class="h-full bg-blue-600 rounded-full transition-all duration-1000"
+									style={`width: ${skill.level}%`}
+								></div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Frameworks -->
+			<div class="mb-12 sm:mb-16">
+				<h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
+					Frameworks y Librerías
+				</h3>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+					{technicalSkills.frameworks.map(skill => (
+						<div class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md">
+							<div class="flex justify-between mb-2">
+								<span class="font-semibold dark:text-white">{skill.name}</span>
+								<span class="dark:text-gray-200">{skill.level}%</span>
+							</div>
+							<div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-full">
+								<div
+									class="h-full bg-green-600 rounded-full transition-all duration-1000"
+									style={`width: ${skill.level}%`}
+								></div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Tools -->
+			<div>
+				<h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white">
+					Herramientas y Tecnologías
+				</h3>
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+					{technicalSkills.tools.map(skill => (
+						<div class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md">
+							<div class="flex justify-between mb-2">
+								<span class="font-semibold dark:text-white">{skill.name}</span>
+								<span class="dark:text-gray-200">{skill.level}%</span>
+							</div>
+							<div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-full">
+								<div
+									class="h-full bg-purple-600 rounded-full transition-all duration-1000"
+									style={`width: ${skill.level}%`}
+								></div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Experience Section -->
+	<section class="py-12 sm:py-20 bg-white dark:bg-gray-900">
+		<div class="container mx-auto px-4 sm:px-6">
+			<h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-white">
+				Experiencia Profesional
+			</h2>
+			<div class="max-w-4xl mx-auto ">
+				{workExperience.map(job => (
+					<div class="mb-8 sm:mb-12 relative pl-6 sm:pl-8 border-l-2 border-gray-200 dark:border-gray-700">
+						<div class="absolute w-3 sm:w-4 h-3 sm:h-4 bg-blue-600 rounded-full -left-[7px] sm:-left-[9px] top-2"></div>
+						<div class="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-md">
+							<h3 class="text-xl sm:text-2xl font-bold mb-2 text-gray-900 dark:text-white">{job.position}</h3>
+							<h4 class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-2">{job.company}</h4>
+							<p class="text-gray-500 dark:text-gray-400 mb-3 sm:mb-4">{job.period}</p>
+							<ul class="list-disc list-inside space-y-1 sm:space-y-2">
+								{job.description.map(item => (
+									<li class="text-sm sm:text-base text-gray-700 dark:text-gray-300">{item}</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Education Section -->
+	<section class="py-12 sm:py-20 bg-gray-50 dark:bg-gray-800">
+		<div class="container mx-auto px-4 sm:px-6">
+			<h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-white">
+				Formación Académica
+			</h2>
+			<div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+				{education.map(edu => (
+					<div class="bg-white dark:bg-gray-700 p-4 sm:p-6 rounded-lg shadow-md">
+						<h3 class="text-lg sm:text-xl font-bold mb-2 text-gray-900 dark:text-white">{edu.degree}</h3>
+						<h4 class="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-2">{edu.institution}</h4>
+						<p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-3 sm:mb-4">{edu.period}</p>
+						<p class="text-sm sm:text-base text-gray-700 dark:text-gray-300">{edu.description}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Section -->
+	<!--<section id="contact" class="py-20 bg-white dark:bg-gray-900">-->
+	<!--	<div class="container mx-auto px-4 sm:px-6 max-w-4xl">-->
+	<!--		<h2 class="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center text-gray-900 dark:text-white">Contacto</h2>-->
+	<!--		<form class="space-y-4 sm:space-y-6">-->
+	<!--			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">-->
+	<!--				<input-->
+	<!--					type="text"-->
+	<!--					placeholder="Nombre"-->
+	<!--					class="w-full p-2 sm:p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none dark:placeholder-gray-400"-->
+	<!--				/>-->
+	<!--				<input-->
+	<!--					type="email"-->
+	<!--					placeholder="Email"-->
+	<!--					class="w-full p-2 sm:p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none dark:placeholder-gray-400"-->
+	<!--				/>-->
+	<!--			</div>-->
+	<!--			<textarea-->
+	<!--				placeholder="Mensaje"-->
+	<!--				rows="6"-->
+	<!--				class="w-full p-2 sm:p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none dark:placeholder-gray-400"-->
+	<!--			></textarea>-->
+	<!--			<button-->
+	<!--				type="submit"-->
+	<!--				class="w-full bg-black dark:bg-blue-600 text-white py-2 sm:py-3 rounded-lg hover:bg-opacity-90 transition-all text-sm sm:text-base"-->
+	<!--			>-->
+	<!--				Enviar Mensaje-->
+	<!--			</button>-->
+	<!--		</form>-->
+	<!--	</div>-->
+	<!--</section>-->
+</Layout>
+<style>
+	.cursor {
+		display: inline-block;
+		animation: blink 0.7s steps(2, start) infinite;
+	}
+
+	@keyframes blink {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0; }
+	}
+</style>
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { TextPlugin } from 'gsap/TextPlugin';
+
+	gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(TextPlugin);
+
+	// Parallax en la imagen del Hero
+	gsap.to('.hero-bg', {
+		scale: 1.1,
+		y: 50,
+		scrollTrigger: {
+			trigger: '.hero-section',
+			start: 'top top',
+			end: 'bottom top',
+			scrub: true,  // Suaviza el desplazamiento&#8203;:contentReference[oaicite:0]{index=0}
+		}
+	});
+
+	// Fade-in para el contenido del Hero
+	gsap.from('.hero-content', {
+		opacity: 0,
+		y: 50,
+		duration: 1.5,
+		ease: 'power2.out',
+	});
+
+	const phrases = [
+		{
+			text: "Desarrollador Full Stack",
+			colors: ["text-white"]
+		},
+		{
+			text: "Angular, React, Java, Astro",
+			colors: ["text-red-700", "text-blue-500", "text-[#f89820]", "text-[#e53b9f]"]
+		},
+		{
+			text: "Docker, AWS, GCP, K8s",
+			colors: ["text-[#0db7ed]", "text-[#FF9900]", "text-[#4285F4]",  "text-[#326ce5]"]
+		},
+	];
+
+	let phraseIndex = 0;
+
+	function animateTyping() {
+		const currentPhrase = phrases[phraseIndex];
+
+		gsap.to('.hero-typing', {
+			text: {
+				value: currentPhrase.text,
+			},
+			duration: 4,
+			repeat: 0,
+			ease: 'none',
+			onUpdate: function() {
+				const words = this.targets()[0].innerText.split(', ');
+				this.targets()[0].innerHTML = words.map((word, index) => {
+					const colorClass = currentPhrase.colors[index % currentPhrase.colors.length];
+					return `<span class="${colorClass}">${word}</span>`;
+				}).join(', ');
+			},
+			onComplete: () => {
+				gsap.delayedCall(2, deleteText);  // ⏳ Espera 2 segundos antes de borrar
+			}
+		});
+	}
+
+	// 🔥 Función para borrar letra por letra de derecha a izquierda
+	function deleteText() {
+		const target = document.querySelector('.hero-typing');
+		const text = target.innerText;
+
+		text.split("").forEach((_, index) => {
+			setTimeout(() => {
+				target.innerText = text.substring(0, text.length - index - 1);
+			}, index * 50);  // Controla la velocidad del borrado
+		});
+
+		// Espera a que termine de borrar para cambiar la frase
+		setTimeout(() => {
+			phraseIndex = (phraseIndex + 1) % phrases.length;
+			animateTyping();
+		}, text.length * 50 + 500);  // Ajuste para iniciar la siguiente frase
+	}
+
+	animateTyping();  // Inicia la animación
+
+
+</script>
